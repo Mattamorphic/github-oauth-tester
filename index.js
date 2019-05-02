@@ -30,8 +30,16 @@ const keypress = async() => {
  * Root callback endpoint for our OAuth app
  */
 app.get('/', (req, res) => {
-  console.log(`Step 5: Exchange the code for an access token here: ${url}/exchange/${req.query.code}`);
-  res.status(200).send(`Authorization code generated: ${req.query.code}`);
+  console.log(`Step 5: Exchanging the code for an access token here: ${url}/exchange/${req.query.code}`);
+  request.get(
+    `${url}/exchange/${req.query.code}`,
+    (error, response, token) => {
+      console.log(`Step 6: Your Access Token: ${token}`);
+      process.exit(0);
+    }
+  );
+
+  res.status(200).send(`OK`);
 });
 
 /**
@@ -54,9 +62,7 @@ app.get('/exchange/:code', (req, res) => {
       if (error) {
         throw new Error(error);
       }
-      console.log(`Step 6: Your Access Token: ${body.access_token}`);
-      res.status(200).send(`Access Token Generated: ${body.access_token}`);
-      process.exit(0);
+      res.status(200).send(`${body.access_token}`);
     });
 
 

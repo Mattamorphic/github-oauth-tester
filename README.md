@@ -20,11 +20,23 @@ CLIENT_SECRET=b7654321
 5. run `node index.js` (I'll make this a `bin` file later!)
 6. Follow the steps provided
 
+Example output:
+
+```
+A simple GitHub OAuth test app flow
+Step 1: Ensure you have an OAuth app created
+Step 2: Add the CLIENT_ID and CLIENT_SECRET to the .env file
+Step 3: Add https://3d029125.ngrok.io as your Authorization callback URL, press any key once you've done this
+Step 4: Test this here: https://github.com/login/oauth/authorize?client_id=CLIENT_ID
+Step 5: Exchanging the code for an access token here: https://3d029125.ngrok.io/exchange/CODE
+Step 6: Your Access Token: TOKEN
+```
+
 ## TODO List
 
 1. Make this a bin and add it to npm
 2. Add more automation and clean up the code
-3. Just add more stuff tbh. 
+3. Just add more stuff tbh.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
