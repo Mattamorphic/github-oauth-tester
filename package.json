@@ -1,0 +1,20 @@
+{
+  "name": "github-oauth-tester",
+  "version": "0.0.1",
+  "description": "A testing tool for GitHub OAuth Apps",
+  "main": "index.js",
+  "repository": "https://github.com/Mattamorphic/github-oauth-tester",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mattamorphic <mfmbarber@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^16.23.2",
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "ngrok": "^3.1.1",
+    "request": "^2.88.0"
+  }
+}
