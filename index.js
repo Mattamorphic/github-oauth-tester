@@ -6,9 +6,25 @@ const bodyParser = require('body-parser');
 const ngrok = require('ngrok');
 const request = require('request');
 
-const port = process.env.PORT || 5000;
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
+const commandLineArgs = require('command-line-args')
+const options = commandLineArgs([
+  { name: 'scope', alias: 's', type: String, multiple: true },
+  { name: 'port', alias: 'p', type: Number },
+  { name: 'client_id', type: String },
+  { name: 'client_secret', type: String},
+]);
+
+const port = options.port || process.env.PORT || 5000;
+const scopes = (options.scope || []).join('%20');
+
+const client_id = options.client_id || process.env.CLIENT_ID;
+const client_secret = options.client_secret || process.env.CLIENT_SECRET;
+
+if (!client_id || !client_secret) {
+  console.error('Ensure you have an OAuth App Created');
+  console.error('Either supply the client_id/client_secret as options, or added to a .env file');
+  process.exit(0);
+}
 
 // Application/json parser
 app.use(bodyParser.json());
@@ -30,11 +46,11 @@ const keypress = async() => {
  * Root callback endpoint for our OAuth app
  */
 app.get('/', (req, res) => {
-  console.log(`Step 5: Exchanging the code for an access token here: ${url}/exchange/${req.query.code}`);
+  console.log(`Step 3: Exchanging the code for an access token here: ${url}/exchange/${req.query.code}`);
   request.get(
     `${url}/exchange/${req.query.code}`,
     (error, response, token) => {
-      console.log(`Step 6: Your Access Token: ${token}`);
+      console.log(`Step 4: Your Access Token: ${token}`);
       process.exit(0);
     }
   );
@@ -87,11 +103,13 @@ async function genNgrokURL(port) {
 let url = '';
 (async function () {
   console.log('A simple GitHub OAuth test app flow');
-  console.log('Step 1: Ensure you have an OAuth app created');
-  console.log('Step 2: Add the CLIENT_ID and CLIENT_SECRET to the .env file');
   url = await genNgrokURL(port);
-  console.log(`Step 3: Add ${url} as your Authorization callback URL, press any key once you've done this`);
+  console.log(`Step 1: Add ${url} as your Authorization callback URL, press any key once you've done this`);
   await keypress();
-  console.log(`Step 4: Test this here: https://github.com/login/oauth/authorize?client_id=${client_id}`);
+  let auth_url = `https://github.com/login/oauth/authorize?client_id=${client_id}`
+  if (scopes) {
+    auth_url += `&scope=${scopes}`;
+  }
+  console.log(`Step 2: Test the authentication flow in your browser: ${auth_url}`);
 
 })();

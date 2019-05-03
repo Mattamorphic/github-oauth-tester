@@ -10,12 +10,18 @@ When getting started with GitHub OAuth apps it's always good to have a base on w
 1. Clone down a copy of this repository
 2. From the root directory of the repository run `npm install`
 3. Create a GitHub OAuth App
+
+### Option 1, supplying OAuth app details via `.env`
 4. Create a `.env` file in the root directory of this repository with the CLIENT_ID and CLIENT_SECRET from your OAuth app configured:
 
 ```
 CLIENT_ID=1234567b
 CLIENT_SECRET=b7654321
 ```
+
+### Option 2, supplying OAuth app details via Command Line
+
+4. When executing step 5, you can supply `--client_id=XXXX --client_secret=XXXX` if you have multiple apps or don't want to hard code this value.
 
 5. run `node index.js` (I'll make this a `bin` file later!)
 6. Follow the steps provided
@@ -31,6 +37,13 @@ Step 4: Test this here: https://github.com/login/oauth/authorize?client_id=CLIEN
 Step 5: Exchanging the code for an access token here: https://3d029125.ngrok.io/exchange/CODE
 Step 6: Your Access Token: TOKEN
 ```
+
+## Command Line Options
+
+- `--client_id` The client id found in the OAuth app (used to tie the authentication to the app)
+- `--client_secret` The client secret found in the OAuth app (used to generate the access token)
+- `--scope` Allows you to provide the OAuth scopes you'd like (`--scope=user --scope=repo --scope=read:org`)
+- `--port` This is the port to expose for ngrok (Defaults to 5000)
 
 ## TODO List
 
