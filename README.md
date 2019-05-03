@@ -30,12 +30,10 @@ Example output:
 
 ```
 A simple GitHub OAuth test app flow
-Step 1: Ensure you have an OAuth app created
-Step 2: Add the CLIENT_ID and CLIENT_SECRET to the .env file
-Step 3: Add https://3d029125.ngrok.io as your Authorization callback URL, press any key once you've done this
-Step 4: Test this here: https://github.com/login/oauth/authorize?client_id=CLIENT_ID
-Step 5: Exchanging the code for an access token here: https://3d029125.ngrok.io/exchange/CODE
-Step 6: Your Access Token: TOKEN
+Step 1: Add https://13668a73.ngrok.io as your Authorization callback URL, press any key once you've done this
+Step 2: Test the authentication flow in your browser: https://github.com/login/oauth/authorize?client_id=7f7b6fd355ea24c583af
+Step 3: Exchanging the code for an access token here: https://3d029125.ngrok.io/exchange/CODE
+Step 4: Your Access Token: TOKEN
 ```
 
 ## Command Line Options
