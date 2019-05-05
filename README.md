@@ -49,7 +49,11 @@ Step 6: Your Access Token: TOKEN
 
 1. Make this a bin and add it to npm
 2. Add more automation and clean up the code
-3. Just add more stuff tbh.
+3. Use octokit to pull down  metadata for the token:
+  - The users handle  
+  - The scopes the token is authorized with
+  - The other tokens for that user for this app, grouped by scopes
+  - The organizations the user is a member of
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
