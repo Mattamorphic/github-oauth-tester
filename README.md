@@ -1,6 +1,6 @@
 # GitHub OAuth Tester
 
-When getting started with GitHub OAuth apps it's always good to have a base on which to understand how the functionality works. This offers step by step pointers on getting this configured and testing with NodeJS / Express
+When getting started with GitHub OAuth apps it's always good to have a base on which to understand how the functionality works. This offers step by step pointers on getting this configured and testing with NodeJS / Express. Written in Typescript/
 
 ## Usage
 
@@ -23,17 +23,24 @@ CLIENT_SECRET=b7654321
 
 4. When executing step 5, you can supply `--client_id=XXXX --client_secret=XXXX` if you have multiple apps or don't want to hard code this value.
 
-5. run `node index.js` (I'll make this a `bin` file later!)
+5. run `npm run start` - this will compile the typescript and run lint checks before firing up the server (I'll make this a `bin` file later!)
 6. Follow the steps provided
 
 Example output:
 
 ```
 A simple GitHub OAuth test app flow
-Step 1: Add https://13668a73.ngrok.io as your Authorization callback URL, press any key once you've done this
-Step 2: Test the authentication flow in your browser: https://github.com/login/oauth/authorize?client_id=7f7b6fd355ea24c583af
-Step 3: Exchanging the code for an access token here: https://3d029125.ngrok.io/exchange/CODE
-Step 4: Your Access Token: TOKEN
+1. Add https://18b785d3.ngrok.io/authorization as your Authorization callback URL
+> Press any key to open your settings
+2. Generated URI https://github.com/login/oauth/authorize?client_id=:client_id
+> Press any key to test the authentication flow
+
+===========================================================
+
+
+Exchanging code for access token
+Exchanged successfully
+Access token created: :token
 ```
 
 ## Command Line Options
@@ -46,8 +53,11 @@ Step 4: Your Access Token: TOKEN
 ## TODO List
 
 1. Make this a bin and add it to npm
-2. Add more automation and clean up the code
-3. Just add more stuff tbh.
+2. Use octokit to pull down  metadata for the token:
+  - The users handle  
+  - The scopes the token is authorized with
+  - The other tokens for that user for this app, grouped by scopes
+  - The organizations the user is a member of
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
