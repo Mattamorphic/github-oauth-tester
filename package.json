@@ -14,7 +14,7 @@
   "author": "Mattamorphic <mfmbarber@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@octokit/rest": "^16.25.1",
+    "@octokit/rest": "^18.5.2",
     "body-parser": "^1.18.3",
     "command-line-args": "^5.1.1",
     "dotenv": "^7.0.0",
